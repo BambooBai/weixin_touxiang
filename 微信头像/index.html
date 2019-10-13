@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="img/1.png" alt="">
+    </div>
+    <div class="center">
+        <div class="photo">
+            <img src="img/1.jpg" id="first" alt="">
+            <img src="img/happy.png" id="second" alt="">
+        </div>
+        <span id="left"></span>
+        <span id="right"></span>
+    </div>
+    <div class="footer">
+        <button id="save">合成图片</button>
+    </div>
+    <div id="imgBox" class="imgBox"></div>
+</div>
+<script>
+    let first = document.getElementById("first");
+    let second = document.getElementById("second");
+    let imgBox=document.getElementById('imgBox');
+    let save = document.getElementById("save");
+    let arr= ["img/happy.png","img/head3.png","img/panda.png"];
+    let index = 0;
+    right.onclick= function () {
+        index++;
+        index>2?index=0:null;
+        let curSrc = arr[index];
+        second.src=curSrc;
+    };
+    left.onclick= function () {
+        index--;
+        index<0?index=2:null;
+        let curSrc = arr[index];
+        second.src=curSrc;
+    };
+    function combine(){
+        var c=document.createElement('canvas'),
+            ctx=c.getContext('2d');
+        c.width=500;
+        c.height=500;
+        ctx.drawImage(first,0,0,500,500);
+        ctx.drawImage(second,0,0,500,500);
+        let curSrc = c.toDataURL("image/png");
+        imgBox.style.display="block";
+        imgBox.innerHTML="<img src="+curSrc+">"
+    };
+    save.onclick = combine;
+</script>
+</body>
+</html>
